@@ -27,7 +27,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
       set_env_override 'PATH',
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
       @bundler_cache.instance_eval do # relocate bundler cache
-        p @bundler_dir = Pathname.new("#{prefix}/#{@bundler_dir}")
+        @bundler_dir = Pathname.new("#{prefix}/#{@bundler_dir}")
         @stack_dir   = if @stack
                          Pathname.new(@stack) + @bundler_dir
                        else
@@ -35,7 +35,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
                        end
       end
       @cache.instance_eval do
-        p @cache_base = Pathname.new("#{@cache_base}/#{prefix}")
+        @cache_base = Pathname.new("#{@cache_base}/#{prefix}")
       end
     end
 
