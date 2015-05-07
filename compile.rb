@@ -10,8 +10,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   def default_process_types          ; end
 
   def pipe cmd, opts
-    if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
-      puts "BUNDLE_GEMFILE detected, using #{bundle_gemfile}"
+    if opts[:env] && (bundle_gemfile = ENV['GEMFILE'])
+      puts "GEMFILE detected, using #{bundle_gemfile}"
       gemfile = opts[:env]['BUNDLE_GEMFILE'] = "#{Dir.pwd}/#{bundle_gemfile}"
     end
     super
