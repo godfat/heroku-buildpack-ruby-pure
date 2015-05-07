@@ -8,5 +8,5 @@ echo "=====> Cloning: $url"
 git clone $url $dir >/dev/null 2>&1
 
 cd $dir
-ruby -I$dir/lib compile.rb $1 $2 $3
+ruby -I$dir/lib $1/compile.rb $1 $2 $3
 $dir/bin/release $1 > $1/release.out
