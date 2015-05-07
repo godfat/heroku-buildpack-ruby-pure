@@ -20,6 +20,13 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
         new(:gemfile_path => gemfile).install
     end
   end
+
+  def pipe cmd, opts
+    if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
+      opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
+    end
+    super
+  end
 end
 
 LanguagePack::ShellHelpers.initialize_env(ARGV[2])
