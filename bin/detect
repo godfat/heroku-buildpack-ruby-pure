@@ -1,4 +1,3 @@
 #!/bin/sh
 
 echo "Pure Ruby"
-exit 0
