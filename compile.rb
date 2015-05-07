@@ -40,6 +40,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
       set_env_override 'PATH',
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
+      p "HACKING"
       @bundler_cache.instance_eval do # relocate bundler cache
         @bundler_dir = Pathname.new("#{prefix}/#{@bundler_dir}")
         @stack_dir   = if @stack
