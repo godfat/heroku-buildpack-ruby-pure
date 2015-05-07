@@ -9,12 +9,15 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   def run_assets_precompile_rake_task; end
   def default_process_types          ; end
 
-  def pipe cmd, opts
-    if opts[:env] && (bundle_gemfile = ENV['GEMFILE'])
-      puts "GEMFILE detected, using #{bundle_gemfile}"
-      gemfile = opts[:env]['BUNDLE_GEMFILE'] = "#{Dir.pwd}/#{bundle_gemfile}"
+  def self.bundler
+    @bundler ||= begin
+      gemfile = if bundle_gemfile = ENV['BUNDLE_GEMFILE']
+        puts "BUNDLE_GEMFILE detected, using #{bundle_gemfile}"
+        "#{Dir.pwd}/#{bundle_gemfile}"
+      end
+      LanguagePack::Helpers::BundlerWrapper.
+        new(:gemfile_path => gemfile).install
     end
-    super
   end
 end
 
