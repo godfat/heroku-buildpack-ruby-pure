@@ -25,6 +25,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
     if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
       opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
       prefix = File.dirname(bundle_gemfile)
+      puts "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
       set_env_override 'PATH',
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
     end
