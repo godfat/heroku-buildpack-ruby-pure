@@ -37,13 +37,13 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
       p "HACKING"
       @bundler_cache.instance_eval do # relocate bundler cache
-        @bundler_dir = Pathname.new("#{prefix}/#{@bundler_dir}")
+        p @bundler_dir = Pathname.new("#{prefix}/#{@bundler_dir}")
         stack_dir    = if @stack
                          Pathname.new(@stack) + @bundler_dir
                        else
                          @bundler_dir
                        end
-        @stack_dir   = "#{prefix}/#{stack_dir}"
+        p @stack_dir   = "#{prefix}/#{stack_dir}"
       end
     end
 
