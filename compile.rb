@@ -1,4 +1,5 @@
 
+require 'language_pack/base'
 require 'language_pack/ruby'
 
 LanguagePack::ShellHelpers.initialize_env(ARGV[2])
