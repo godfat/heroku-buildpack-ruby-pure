@@ -1,4 +1,6 @@
 
+require 'language_pack'
+require 'language_pack/shell_helpers'
 require 'language_pack/base'
 require 'language_pack/ruby'
 
