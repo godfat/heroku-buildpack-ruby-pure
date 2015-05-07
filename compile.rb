@@ -7,6 +7,7 @@ require 'language_pack/ruby'
 class LanguagePack::RubyPure < LanguagePack::Ruby
   def create_database_yml            ; end
   def run_assets_precompile_rake_task; end
+  def default_process_types          ; end
 end
 
 LanguagePack::ShellHelpers.initialize_env(ARGV[2])
