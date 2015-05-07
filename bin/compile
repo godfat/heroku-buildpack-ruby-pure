@@ -10,6 +10,6 @@ git clone $url $dir >/dev/null 2>&1
 echo "=====> Checking out: $tag"
 git checkout $tag >/dev/null 2>&1
 
-ls -R $3
+ls -aR $2
 ruby -I$dir/lib $(dirname $0)/../compile.rb $1 $2 $3
 $dir/bin/release $1 > $1/release.out
