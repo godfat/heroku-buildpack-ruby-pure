@@ -39,14 +39,14 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
       # relocate bundler cache
       @cache.define_singleton_method :store do |from, path=nil|
         if from == '.bundle'
-          super("#{prefix}/#{from}")
+          super("#{prefix}/#{from}", path)
         else
           super
         end
       end
       @cache.define_singleton_method :load do |path, dest=nil|
         if path == '.bundle'
-          super("#{prefix}/#{from}")
+          super("#{prefix}/#{path}", dest)
         else
           super
         end
