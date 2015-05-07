@@ -11,7 +11,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
   def pipe cmd, opts
     if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
-      opts[:env]['BUNDLE_GEMFILE'] = "#{Dir.pwd}/#{bundle_gemfile}"
+      gemfile = opts[:env]['BUNDLE_GEMFILE'] = "#{Dir.pwd}/#{bundle_gemfile}"
+      puts "BUNDLE_GEMFILE detected, using #{gemfile}"
     end
     super
   end
