@@ -10,9 +10,10 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   def default_process_types          ; end
 
   def self.bundler
-    puts "DEBUG #{ENV['BUNDLE_GEMFILE']}"
     @bundler ||= begin
-      gemfile = if bundle_gemfile = ENV['GEMFILE']
+      env = LanguagePack::ShellHelpers.user_env_hash
+      puts "DEBUG #{env}"
+      gemfile = if bundle_gemfile = env['BUNDLE_GEMFILE']
         puts "BUNDLE_GEMFILE detected, using #{bundle_gemfile}"
         "#{Dir.pwd}/#{bundle_gemfile}"
       end
