@@ -41,14 +41,14 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
         if from == '.bundle'
           super("#{prefix}/#{from}", path)
         else
-          super
+          super(from, path)
         end
       end
       @cache.define_singleton_method :load do |path, dest=nil|
         if path == '.bundle'
           super("#{prefix}/#{path}", dest)
         else
-          super
+          super(path, dest)
         end
       end
     end
