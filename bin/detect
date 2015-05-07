@@ -1,1 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
+
+echo "Pure Ruby"
+exit 0
