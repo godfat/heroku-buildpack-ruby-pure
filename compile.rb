@@ -23,6 +23,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
   def pipe cmd, opts
     if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
+      p "WAT?"
       opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
       set_env_override 'PATH',
