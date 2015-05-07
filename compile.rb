@@ -13,7 +13,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
     @bundler ||= begin
       env = LanguagePack::ShellHelpers.user_env_hash
       gemfile = if bundle_gemfile = env['BUNDLE_GEMFILE']
-        puts "BUNDLE_GEMFILE detected, using #{bundle_gemfile}"
+        puts "=====> BUNDLE_GEMFILE detected, using #{bundle_gemfile}"
         "#{Dir.pwd}/#{bundle_gemfile}"
       end
       LanguagePack::Helpers::BundlerWrapper.
@@ -28,7 +28,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
       set_env_override 'PATH',
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
       @bundler_cache.instance_eval do # relocate bundler cache
-        @bundler_dir = Pathname.new("#{prefix}/#{@bundler_dir}")
+        p @bundler_dir = Pathname.new("#{prefix}/#{@bundler_dir}")
         @stack_dir   = if @stack
                          Pathname.new(@stack) + @bundler_dir
                        else
@@ -36,7 +36,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
                        end
       end
       @cache.instance_eval do
-        @cache_base = Pathname.new("#{prefix}/#{@cache_base}")
+        p @cache_base = Pathname.new("#{prefix}/#{@cache_base}")
       end
     end
     super
