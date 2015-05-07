@@ -8,6 +8,13 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   def create_database_yml            ; end
   def run_assets_precompile_rake_task; end
   def default_process_types          ; end
+
+  def pipe cmd, opts
+    if bundle_gemfile = ENV['BUNDLE_GEMFILE']
+      opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
+    end
+    super
+  end
 end
 
 LanguagePack::ShellHelpers.initialize_env(ARGV[2])
