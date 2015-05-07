@@ -1,1 +1,1 @@
-web: ruby -S puma -p $PORT app/config.ru
+web: ruby app/bin/puma -p $PORT app/config.ru
