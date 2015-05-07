@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 url=https://github.com/heroku/heroku-buildpack-ruby
-dir=$(mktemp -t buildpack)
+dir=$(mktemp -t buildpackXXXXX)
 rm -rf $dir
 
 echo "=====> Cloning: $url"
