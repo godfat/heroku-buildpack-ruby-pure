@@ -4,6 +4,20 @@ require 'language_pack/shell_helpers'
 require 'language_pack/base'
 require 'language_pack/ruby'
 
+module Debug
+  def store from, path=nil
+    p "storing: #{from}, #{path}"
+    super
+  end
+
+  def load path, dest=nil
+    p "loading: #{path}, #{dest}"
+    super
+  end
+end
+
+LanguagePack::Cache.prepend Debug
+
 class LanguagePack::RubyPure < LanguagePack::Ruby
   def create_database_yml            ; end
   def run_assets_precompile_rake_task; end
