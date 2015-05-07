@@ -5,13 +5,8 @@ require 'language_pack/base'
 require 'language_pack/ruby'
 
 module Debug
-  def store from, path=nil
-    p "storing: #{from}, #{path}"
-    super
-  end
-
-  def load path, dest=nil
-    p "loading: #{path}, #{dest}"
+  def copy from, to
+    puts "FROM: #{from}, TO: #{to}"
     super
   end
 end
