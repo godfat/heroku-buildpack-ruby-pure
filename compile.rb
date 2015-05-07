@@ -37,7 +37,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
       print "base: "
       @cache.instance_eval do # relocate bundler cache
-        puts @cache_base = "#{@cache_base}/#{prefix}/"
+        puts @cache_base = Pathname.new("#{@cache_base}/#{prefix}/")
       end
     end
 
