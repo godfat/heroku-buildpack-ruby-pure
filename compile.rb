@@ -12,7 +12,6 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   def self.bundler
     @bundler ||= begin
       env = LanguagePack::ShellHelpers.user_env_hash
-      puts "DEBUG #{env}"
       gemfile = if bundle_gemfile = env['BUNDLE_GEMFILE']
         puts "BUNDLE_GEMFILE detected, using #{bundle_gemfile}"
         "#{Dir.pwd}/#{bundle_gemfile}"
