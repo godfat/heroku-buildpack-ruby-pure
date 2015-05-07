@@ -11,7 +11,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
   def self.bundler
     @bundler ||= begin
-      gemfile = if bundle_gemfile = ENV['BUNDLE_GEMFILE']
+      gemfile = if bundle_gemfile = ENV['GEMFILE']
         puts "BUNDLE_GEMFILE detected, using #{bundle_gemfile}"
         "#{Dir.pwd}/#{bundle_gemfile}"
       end
