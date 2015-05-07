@@ -11,7 +11,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
   def pipe cmd, opts
     if bundle_gemfile = ENV['BUNDLE_GEMFILE']
-      opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
+      opts[:env]['BUNDLE_GEMFILE'] = "#{Dir.pwd}/#{bundle_gemfile}"
     end
     super
   end
