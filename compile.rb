@@ -45,6 +45,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
                          @bundler_dir
                        end
         p @stack_dir   = "#{prefix}/#{stack_dir}"
+        p self
       end
     end
 
