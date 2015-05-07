@@ -22,23 +22,23 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   end
 
   def pipe cmd, opts
-    if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
-      p "WAT?"
-      opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
-      prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
-      set_env_override 'PATH',
-                       "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
-      @bundler_cache.instance_eval do # relocate bundler cache
-        p @bundler_dir
-        @bundler_dir = Pathname.new("#{prefix}/vendor/bundle")
-        p @bundler_dir
-        @stack_dir   = if @stack
-                         Pathname.new(@stack) + @bundler_dir
-                       else
-                         @bundler_dir
-                       end
-      end
-    end
+    # if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
+    #   p "WAT?"
+    #   opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
+    #   prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
+    #   set_env_override 'PATH',
+    #                    "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
+    #   @bundler_cache.instance_eval do # relocate bundler cache
+    #     p @bundler_dir
+    #     @bundler_dir = Pathname.new("#{prefix}/vendor/bundle")
+    #     p @bundler_dir
+    #     @stack_dir   = if @stack
+    #                      Pathname.new(@stack) + @bundler_dir
+    #                    else
+    #                      @bundler_dir
+    #                    end
+    #   end
+    # end
     super
   end
 end
