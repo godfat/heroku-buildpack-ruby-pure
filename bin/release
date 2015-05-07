@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cat $1/release.out
+rm $1/release.out

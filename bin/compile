@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+url=https://github.com/heroku/heroku-buildpack-ruby
+dir=$(mktemp -t buildpack)
+rm -rf $dir
+
+echo "=====> Cloning: $url"
+git clone $url $dir >/dev/null 2>&1
+
+cd $dir
+ruby -I$dir/lib compile.rb $1 $2 $3
+$dir/bin/release $1 > $1/release.out
