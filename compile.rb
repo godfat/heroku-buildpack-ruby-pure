@@ -36,7 +36,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
                        end
       end
       @cache.instance_eval do
-        p @cache_base = Pathname.new("#{prefix}/#{@cache_base}")
+        p @cache_base = Pathname.new("#{@cache_base}/#{prefix}")
       end
     end
     super
