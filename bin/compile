@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 url=https://github.com/heroku/heroku-buildpack-ruby
+tag=v136
 dir=$(mktemp -t buildpackXXXXX)
 rm -rf $dir
 
 echo "=====> Cloning: $url"
 git clone $url $dir >/dev/null 2>&1
-git checkout v136 >/dev/null 2>&1
+echo "=====> Checking out: $tag"
+git checkout $tag >/dev/null 2>&1
 
 cd $dir
 ruby -I$dir/lib $1/compile.rb $1 $2 $3
