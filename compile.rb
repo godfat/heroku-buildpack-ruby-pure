@@ -74,9 +74,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
     else
       'vendor/heroku'
     end
-    r = File.exist?(dir)
-    puts "new_app? #{r} #{@prefix} #{super}"
-    r
+    !File.exist?(dir)
   end
 
   def build_bundler
