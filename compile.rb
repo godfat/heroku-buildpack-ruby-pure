@@ -40,6 +40,10 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   end
 
   def build_bundler
+    puts "ls #{prefix}/.bundle"
+    puts `ls #{prefix}/.bundle`
+    puts "ls .bundle"
+    puts `ls .bundle`
     if bundle_gemfile = self.class.env['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile)
 
