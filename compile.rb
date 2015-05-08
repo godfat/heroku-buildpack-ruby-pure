@@ -34,12 +34,12 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
   def build_bundler
     if bundle_gemfile = ENV['BUNDLE_GEMFILE']
-      p "WTF?"
+      p "WTF? #{bundle_gemfile}"
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
 
       # relocate bin
-      set_env_override 'PATH',
-                       "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
+      # set_env_override 'PATH',
+      #                  "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
 
       # relocate cache
       # cache.define_singleton_method :store do |from, path=nil|
@@ -65,8 +65,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
   def pipe cmd, opts
     if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
-      p "ABC"
-      opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
+      p "ABC #{bundle_gemfile}"
+      # opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
     end
     super
   end
