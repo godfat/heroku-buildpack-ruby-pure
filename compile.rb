@@ -31,6 +31,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   end
 
   def build_bundler
+    puts "NEW!!XDDDDDDDDD #{new_app?} #{convert_stack}"
+
     if bundle_gemfile = ENV['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
       set_env_override 'PATH',
@@ -60,9 +62,5 @@ LanguagePack::ShellHelpers.initialize_env(ARGV[2])
 pack = LanguagePack::RubyPure.new(ARGV[0], ARGV[1])
 pack.topic("Compiling #{pack.name}")
 pack.log("compile") do
-  puts `ls -aR /app/tmp/cache/`
   pack.compile
-  puts `ls app/vendor/bundle`
-  puts
-  puts `ls app/.bundle`
 end
