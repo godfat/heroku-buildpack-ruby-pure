@@ -4,12 +4,7 @@ require 'language_pack/shell_helpers'
 require 'language_pack/base'
 require 'language_pack/ruby'
 
-module Debug
-  def copy from, to
-    puts "FROM: #{prepend(from)}, TO: #{prepend(to)}"
-    super(prepend(from), prepend(to))
-  end
-
+module Prepend
   def prepend path
     if @prefix && !path.to_s.start_with?('/')
       "#{@prefix}/#{path}"
@@ -17,17 +12,32 @@ module Debug
       path
     end
   end
+end
 
-  def read key
-    r = super(prepend(key))
-    puts "READING #{key} => #{r}"
-    r
+module Cache
+  prepend Prepend
+  def copy from, to
+    puts "FROM: #{prepend(from)}, TO: #{prepend(to)}"
+    super(prepend(from), prepend(to))
   end
 
   def exists? key
     r = super(prepend(key))
     puts "EXISTS? #{key} => #{r}"
     r
+  end
+end
+
+module Metadata
+  prepend Prepend
+  def read key
+    full_key = prepend("vendor/heroku/#{key}")
+    File.read(full_key) if exists?(key)
+  end
+
+  def exists? key
+    full_key = prepend("vendor/heroku/#{key}")
+    File.exists?(full_key) && !Dir.exists(full_key)
   end
 
   def write key, value, isave=true
@@ -56,8 +66,8 @@ module Bad
   end
 end
 
-LanguagePack::Cache.prepend Debug
-LanguagePack::Metadata.prepend Debug
+LanguagePack::Cache.prepend Cache
+LanguagePack::Metadata.prepend Metadata
 LanguagePack::BundlerCache.prepend Bad
 
 class LanguagePack::RubyPure < LanguagePack::Ruby
