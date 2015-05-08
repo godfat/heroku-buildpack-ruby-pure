@@ -19,7 +19,9 @@ module Debug
   end
 
   def read key
-    super(prepend(key))
+    r = super(prepend(key))
+    puts "READING #{key} => #{r}"
+    r
   end
 
   def exists? key
