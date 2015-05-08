@@ -22,25 +22,26 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
   def self.bundler
     @bundler ||= begin
-      env = LanguagePack::ShellHelpers.user_env_hash
       gemfile = if bundle_gemfile = env['BUNDLE_GEMFILE']
         puts "=====> BUNDLE_GEMFILE detected, using #{bundle_gemfile}"
         "#{Dir.pwd}/#{bundle_gemfile}"
       end
-      # LanguagePack::Helpers::BundlerWrapper.
-      #   new(:gemfile_path => gemfile).install
-      LanguagePack::Helpers::BundlerWrapper.new.install
+      LanguagePack::Helpers::BundlerWrapper.
+        new(:gemfile_path => gemfile).install
     end
   end
 
+  def self.env
+    LanguagePack::ShellHelpers.user_env_hash
+  end
+
   def build_bundler
-    if bundle_gemfile = ENV['BUNDLE_GEMFILE']
-      p "WTF? #{bundle_gemfile}"
+    if bundle_gemfile = self.class.env['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
 
       # relocate bin
-      # set_env_override 'PATH',
-      #                  "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
+      set_env_override 'PATH',
+                       "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
 
       # relocate cache
       # cache.define_singleton_method :store do |from, path=nil|
@@ -65,9 +66,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   end
 
   def pipe cmd, opts
-    if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
-      p "ABC #{bundle_gemfile}"
-      # opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
+    if opts[:env] && (bundle_gemfile = self.class.env['BUNDLE_GEMFILE'])
+      opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
     end
     super
   end
