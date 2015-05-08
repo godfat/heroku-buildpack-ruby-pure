@@ -45,6 +45,11 @@ module Bad
     puts "exists? #{super}"
     super
   end
+
+  def convert_stack stack_change
+    puts "convert_stack: #{stack_change}"
+    super
+  end
 end
 
 LanguagePack::Cache.prepend Debug
