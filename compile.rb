@@ -6,8 +6,9 @@ require 'language_pack/ruby'
 
 module Debug
   def copy from, to
+    f, t = File.expand_path(from), File.expand_path(to)
     puts "FROM: #{from}, TO: #{to}, EXIST: #{File.exist?(from)}"
-    super
+    super(File.expand_path(from))
     puts "AFTER CP"
     puts `ls #{to}`
     puts "PWD: #{Dir.pwd}"
