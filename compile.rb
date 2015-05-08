@@ -30,19 +30,14 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
     end
   end
 
-  def new_app?
-    false
-  end
-
   def build_bundler
-    puts "NEW??XDDDDDDDDD #{new_app?} #{@bundler_cache.old?}"
-
     if bundle_gemfile = ENV['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
       set_env_override 'PATH',
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
 
-      # relocate bundler cache
+      # relocate cache
+      FileUtils.mkdir_p("#{prefix}/vendor/heroku")
       @cache.define_singleton_method :store do |from, path=nil|
         super("#{prefix}/#{from}", path)
       end
@@ -50,8 +45,6 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
         super("#{prefix}/#{path}", dest)
       end
     end
-
-    puts "ODL??XDDDDDDDDD #{new_app?} #{@bundler_cache.old?}"
 
     super
   end
