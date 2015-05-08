@@ -34,6 +34,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
   def build_bundler
     if bundle_gemfile = ENV['BUNDLE_GEMFILE']
+      p "WTF?"
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
 
       # relocate bin
@@ -64,6 +65,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
   def pipe cmd, opts
     if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
+      p "ABC"
       opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
     end
     super
