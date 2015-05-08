@@ -9,9 +9,6 @@ module Debug
     f, t = File.expand_path(from), File.expand_path(to)
     puts "FROM: #{f}, TO: #{t}, EXIST: #{File.exist?(f)}"
     super(f, t)
-    puts "AFTER CP"
-    puts `ls #{t}`
-    puts "PWD: #{Dir.pwd}"
   end
 
   def system cmd
@@ -20,9 +17,8 @@ module Debug
   end
 
   def read key
-    p "READ: #{LanguagePack::Metadata::FOLDER}/#{key} #{exists?(key)} #{Dir.pwd} #{@cache}"
-    puts `ls vendor/heroku`
-    puts `cat vendor/heroku/stack`
+    path = File.expand_path("#{LanguagePack::Metadata::FOLDER}/#{key}")
+    p "READ:  #{path}"
     super
   end
 end
@@ -98,8 +94,5 @@ LanguagePack::ShellHelpers.initialize_env(ARGV[2])
 pack = LanguagePack::RubyPure.new(ARGV[0], ARGV[1])
 pack.topic("Compiling #{pack.name}")
 pack.log("compile") do
-  puts `cat /app/tmp/cache/vendor/heroku/stack`
-  puts `ls vendor/heroku`
-  puts "WHERE AM I #{Dir.pwd}"
   pack.compile
 end
