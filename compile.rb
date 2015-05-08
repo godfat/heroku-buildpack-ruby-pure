@@ -33,25 +33,21 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   def build_bundler
     if bundle_gemfile = ENV['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
+
+      # relocate bin
       set_env_override 'PATH',
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
 
       # relocate cache
-      @cache.define_singleton_method :copy do |from, to|
-        f = if from.to_s.start_with?('/')
-              from
-            else
-              "#{prefix}/#{from}"
-            end
-        t = if to  .to_s.start_with?('/')
-              to
-            else
-              "#{prefix}/#{to}"
-            end
-        super(f, t)
+      @cache.define_singleton_method :store do |from, path=nil|
+        super("#{prefix}/#{from}", path)
       end
-
-      p "NEW? #{new_app?}"
+      @cache.define_singleton_method :add do |from, path=nil|
+        super("#{prefix}/#{from}", path)
+      end
+      @cache.define_singleton_method :load do |path, dest=nil|
+        super("#{prefix}/#{path}", dest)
+      end
     end
 
     super
