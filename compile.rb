@@ -6,7 +6,7 @@ require 'language_pack/ruby'
 
 module Debug
   def copy from, to
-    puts "FROM: #{from}, TO: #{to}"
+    puts "FROM: #{from}, TO: #{to}, EXIST: #{File.exist?(from)}"
     super
   end
 
