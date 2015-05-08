@@ -41,7 +41,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
         f = if from.to_s.start_with?('/')
               from
             else
-              "#{prefix}/#{form}"
+              "#{prefix}/#{from}"
             end
         t = if to  .to_s.start_with?('/')
               to
