@@ -10,12 +10,6 @@ module Debug
     puts "FROM: #{f}, TO: #{t}"
     super(f, t)
   end
-
-  def read key
-    path = File.expand_path("#{LanguagePack::Metadata::FOLDER}/#{key}")
-    p "READ:  #{path}"
-    super
-  end
 end
 
 LanguagePack::Cache.prepend Debug
