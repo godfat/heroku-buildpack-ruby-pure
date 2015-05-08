@@ -93,7 +93,7 @@ pack.log("compile") do
   puts "CACHE: #{ARGV[1]}"
   puts "`ls #{ARGV[1]}`"
   # Dir.chdir(pack.build_path) do
-    puts `ls /app/tmp/cache/vendor/heroku/cedar-14`
+    puts `ls /app/tmp/cache/cedar-14/vendor/heroku`
     # puts `cat /app/tmp/cache/vendor/heroku/stack`
     pack.compile
   # end
