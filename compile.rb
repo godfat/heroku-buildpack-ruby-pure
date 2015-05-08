@@ -45,7 +45,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
   def new_app?
     puts "PWD: #{Dir.pwd}"
-    puts "ls: #{`ls`}"
+    puts "ls vendor: #{`ls vendor`}"
     puts super
     super
   end
