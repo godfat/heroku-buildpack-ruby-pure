@@ -30,6 +30,10 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
     end
   end
 
+  def new_app?
+    false
+  end
+
   def build_bundler
     puts "NEW!!XDDDDDDDDD #{new_app?} #{@bundler_cache.old?}"
 
