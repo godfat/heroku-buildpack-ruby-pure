@@ -38,7 +38,9 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
       # relocate cache
       @cache.define_singleton_method :copy do |from, to|
-        super("#{prefix}/#{from}", to)
+        f = if from.start_with?('/') then from else "#{prefix}/#{form}" end
+        t = if to  .start_with?('/') then to   else "#{prefix}/#{to}"   end
+        super(f, t)
       end
 
       p "NEW? #{new_app?}"
