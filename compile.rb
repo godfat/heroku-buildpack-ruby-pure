@@ -32,10 +32,6 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
     end
   end
 
-  def new_app?
-    false
-  end
-
   def build_bundler
     if bundle_gemfile = ENV['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
