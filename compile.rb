@@ -37,7 +37,7 @@ module Metadata
 
   def exists? key
     full_key = prepend("vendor/heroku/#{key}")
-    File.exists?(full_key) && !Dir.exists(full_key)
+    File.exists?(full_key) && !Dir.exists?(full_key)
   end
 
   def write key, value, isave=true
