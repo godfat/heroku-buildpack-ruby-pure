@@ -7,13 +7,8 @@ require 'language_pack/ruby'
 module Debug
   def copy from, to
     f, t = File.expand_path(from), File.expand_path(to)
-    puts "FROM: #{f}, TO: #{t}, EXIST: #{File.exist?(f)}"
+    puts "FROM: #{f}, TO: #{t}"
     super(f, t)
-  end
-
-  def system cmd
-    puts cmd
-    super
   end
 
   def read key
@@ -56,15 +51,15 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
 
       # relocate cache
-      cache.define_singleton_method :store do |from, path=nil|
-        super("#{prefix}/#{from}", path)
-      end
-      cache.define_singleton_method :add do |from, path=nil|
-        super("#{prefix}/#{from}", path)
-      end
-      cache.define_singleton_method :load do |path, dest=nil|
-        super("#{prefix}/#{path}", dest)
-      end
+      # cache.define_singleton_method :store do |from, path=nil|
+      #   super("#{prefix}/#{from}", path)
+      # end
+      # cache.define_singleton_method :add do |from, path=nil|
+      #   super("#{prefix}/#{from}", path)
+      # end
+      # cache.define_singleton_method :load do |path, dest=nil|
+      #   super("#{prefix}/#{path}", dest)
+      # end
     end
 
     super
