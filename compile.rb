@@ -10,6 +10,11 @@ module Debug
     super
   end
 
+  def system cmd
+    puts cmd
+    super
+  end
+
   def read key
     p "READ: #{LanguagePack::Metadata::FOLDER}/#{key} #{exists?(key)} #{Dir.pwd} #{@cache}"
     puts `ls vendor/heroku`
