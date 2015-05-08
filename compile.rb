@@ -73,5 +73,8 @@ pack = LanguagePack::RubyPure.new(ARGV[0], ARGV[1])
 pack.topic("Compiling #{pack.name}")
 pack.log("compile") do
   puts `ls /app/tmp/cache/vendor/heroku`
+  puts `cat /app/tmp/cache/vendor/heroku/stack`
+  puts `ls /app/tmp/cache/app/vendor/heroku`
+  puts `cat /app/tmp/cache/app/vendor/heroku/stack`
   pack.compile
 end
