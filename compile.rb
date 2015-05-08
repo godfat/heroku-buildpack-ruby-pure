@@ -8,6 +8,8 @@ module Debug
   def copy from, to
     puts "FROM: #{from}, TO: #{to}, EXIST: #{File.exist?(from)}"
     super
+    puts "AFTER CP"
+    puts `ls #{to}`
   end
 
   def system cmd
