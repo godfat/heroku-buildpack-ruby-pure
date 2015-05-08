@@ -6,8 +6,7 @@ require 'language_pack/ruby'
 
 module Debug
   def copy from, to
-    # f, t = File.expand_path(from), File.expand_path(to)
-    # puts "FROM: #{f}, TO: #{t}"
+    puts "FROM: #{from}, TO: #{to}"
     super
   end
 end
@@ -36,8 +35,6 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   end
 
   def build_bundler
-    p "bundler_path #{bundler.bundler_path}"
-
     if bundle_gemfile = self.class.env['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile)
 
