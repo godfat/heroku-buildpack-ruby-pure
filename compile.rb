@@ -61,4 +61,6 @@ pack = LanguagePack::RubyPure.new(ARGV[0], ARGV[1])
 pack.topic("Compiling #{pack.name}")
 pack.log("compile") do
   pack.compile
+  `ls app/vendor/bundle`
+  `ls app/.bundle`
 end
