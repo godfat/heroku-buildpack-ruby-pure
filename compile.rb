@@ -44,11 +44,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   def default_process_types          ; end
 
   def new_app?
-    puts "PWD: #{Dir.pwd}"
-    puts "ls vendor: #{`ls vendor`}"
     puts super
-    super
-    false
   end
 
   def self.bundler
@@ -94,6 +90,8 @@ LanguagePack::ShellHelpers.initialize_env(ARGV[2])
 pack = LanguagePack::RubyPure.new(ARGV[0], ARGV[1])
 pack.topic("Compiling #{pack.name}")
 pack.log("compile") do
+  puts "CACHE: #{ARGV[1]}"
+  puts "`ls #{ARGV[1]}`"
   # Dir.chdir(pack.build_path) do
     puts `ls /app/tmp/cache/vendor/heroku`
     puts `cat /app/tmp/cache/vendor/heroku/stack`
