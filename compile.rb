@@ -72,5 +72,6 @@ LanguagePack::ShellHelpers.initialize_env(ARGV[2])
 pack = LanguagePack::RubyPure.new(ARGV[0], ARGV[1])
 pack.topic("Compiling #{pack.name}")
 pack.log("compile") do
+  puts `ls /app/tmp/cache/vendor/heroku`
   pack.compile
 end
