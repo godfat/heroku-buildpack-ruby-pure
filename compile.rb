@@ -75,7 +75,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
       'vendor/heroku'
     end
     r = File.exist?(dir)
-    puts "new_app? #{r} #{@prefix}"
+    puts "new_app? #{r} #{@prefix} #{super}"
     r
   end
 
