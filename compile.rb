@@ -91,9 +91,9 @@ pack = LanguagePack::RubyPure.new(ARGV[0], ARGV[1])
 pack.topic("Compiling #{pack.name}")
 pack.log("compile") do
   puts "CACHE: #{ARGV[1]}"
-  puts "`ls #{ARGV[1]}`"
+  puts "`ls -R #{ARGV[1]}`"
   # Dir.chdir(pack.build_path) do
-    puts `ls /app/tmp/cache/cedar-14/vendor/heroku`
+    # puts `ls /app/tmp/cache/cedar-14/vendor/heroku`
     # puts `cat /app/tmp/cache/vendor/heroku/stack`
     pack.compile
   # end
