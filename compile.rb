@@ -33,7 +33,9 @@ module Debug
     File.write(full_key, "#{value}\n")
     save if isave
   end
+end
 
+module Bad
   def old?
     puts "old? #{super}"
     super
@@ -47,7 +49,7 @@ end
 
 LanguagePack::Cache.prepend Debug
 LanguagePack::Metadata.prepend Debug
-LanguagePack::BundlerCache.prepend Debug
+LanguagePack::BundlerCache.prepend Bad
 
 class LanguagePack::RubyPure < LanguagePack::Ruby
   def create_database_yml            ; end
