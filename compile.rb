@@ -9,6 +9,11 @@ module Debug
     puts "FROM: #{from}, TO: #{to}"
     super
   end
+
+  def write key, value, isave=true
+    puts "WRITE: #{LanguagePack::Metadata::FOLDER}/#{key} #{value}"
+    super
+  end
 end
 
 LanguagePack::Cache.prepend Debug
