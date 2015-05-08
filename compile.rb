@@ -48,6 +48,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
       cache.define_singleton_method :load do |path, dest=nil|
         super("#{prefix}/#{path}", dest)
       end
+
+      @bundler_cache.load
     end
 
     super
