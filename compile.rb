@@ -68,6 +68,11 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
     LanguagePack::ShellHelpers.user_env_hash
   end
 
+  def new_app?
+    puts super
+    super
+  end
+
   def build_bundler
     if bundle_gemfile = self.class.env['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile)
