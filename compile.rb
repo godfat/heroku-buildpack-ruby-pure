@@ -48,6 +48,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
     puts "ls vendor: #{`ls vendor`}"
     puts super
     super
+    false
   end
 
   def self.bundler
