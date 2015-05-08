@@ -43,6 +43,12 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   def run_assets_precompile_rake_task; end
   def default_process_types          ; end
 
+  def new_app?
+    puts "PWD: #{Dir.pwd}"
+    puts super
+    super
+  end
+
   def self.bundler
     @bundler ||= begin
       gemfile = if bundle_gemfile = env['BUNDLE_GEMFILE']
