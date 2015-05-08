@@ -40,6 +40,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
       @cache.define_singleton_method :copy do |from, to|
         super("#{prefix}/#{from}", to)
       end
+
+      p "NEW? #{new_app?}"
     end
 
     super
