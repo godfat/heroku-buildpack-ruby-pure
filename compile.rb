@@ -39,20 +39,25 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
 
       # relocate cache
-      @cache.define_singleton_method :store do |from, path=nil|
+      cache.define_singleton_method :store do |from, path=nil|
         super("#{prefix}/#{from}", path)
       end
-      @cache.define_singleton_method :add do |from, path=nil|
-        p "ADDING"
+      cache.define_singleton_method :add do |from, path=nil|
         super("#{prefix}/#{from}", path)
       end
-      @cache.define_singleton_method :load do |path, dest=nil|
+      cache.define_singleton_method :load do |path, dest=nil|
         super("#{prefix}/#{path}", dest)
       end
-      cache.load "vendor"
     end
 
     super
+
+    if bundle_gemfile
+      # write metadata back
+      cache.instance_eval do
+        copy("#{prefix}/vendor/heroku", "#{@cache_base}/vendor/heroku")
+      end
+    end
   end
 
   def pipe cmd, opts
