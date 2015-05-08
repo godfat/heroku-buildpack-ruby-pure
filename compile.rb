@@ -60,7 +60,7 @@ LanguagePack::ShellHelpers.initialize_env(ARGV[2])
 pack = LanguagePack::RubyPure.new(ARGV[0], ARGV[1])
 pack.topic("Compiling #{pack.name}")
 pack.log("compile") do
-  puts `ls -aR /app/tmp/cache/app/vendor/bundle`
+  puts `ls -aR /app/tmp/cache/`
   pack.compile
   puts `ls app/vendor/bundle`
   puts
