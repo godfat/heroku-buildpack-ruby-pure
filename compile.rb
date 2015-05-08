@@ -83,7 +83,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
       # relocate bin
       set_env_override 'PATH',
-                       "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
+                       "$HOME/#{@prefix}/#{bundler_binstubs_path}:$PATH"
 
       # relocate cache
       cache    .instance_variable_set(:@prefix, @prefix)
