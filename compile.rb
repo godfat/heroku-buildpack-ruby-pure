@@ -58,15 +58,6 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
     LanguagePack::ShellHelpers.user_env_hash
   end
 
-  # def load_bundler_cache
-  #   super
-
-  #   if bundle_gemfile = self.class.env['BUNDLE_GEMFILE']
-  #     prefix = File.dirname(bundle_gemfile)
-  #     cache.load('.bu')
-  #   end
-  # end
-
   def build_bundler
     if bundle_gemfile = self.class.env['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile)
@@ -78,25 +69,9 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
       # relocate cache
       cache    .instance_variable_set(:@prefix, prefix)
       @metadata.instance_variable_set(:@prefix, prefix)
-      # cache.define_singleton_method :store do |from, path=nil|
-      #   super("#{prefix}/#{from}", path)
-      # end
-      # cache.define_singleton_method :add do |from, path=nil|
-      #   super("#{prefix}/#{from}", path)
-      # end
-      # cache.define_singleton_method :load do |path, dest=nil|
-      #   super("#{prefix}/#{path}", dest)
-      # end
     end
 
     super
-
-    # if bundle_gemfile
-    #   # write metadata back
-    #   cache.instance_eval do
-    #     copy("#{prefix}/vendor/heroku", "#{@cache_base}/vendor/heroku")
-    #   end
-    # end
   end
 
   def pipe cmd, opts
