@@ -11,7 +11,7 @@ module Debug
   end
 
   def read key
-    p "READ: #{FOLDER}/#{key} #{@cache}"
+    p "READ: #{LanguagePack::Metadata::FOLDER}/#{key} #{@cache}"
     super
   end
 end
