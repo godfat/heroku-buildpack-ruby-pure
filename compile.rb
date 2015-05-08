@@ -65,7 +65,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
 
       # relocate cache
-      cache.instance_variable_set(:@prefix, prefix)
+      cache    .instance_variable_set(:@prefix, prefix)
+      @metadata.instance_variable_set(:@prefix, prefix)
       # cache.define_singleton_method :store do |from, path=nil|
       #   super("#{prefix}/#{from}", path)
       # end
