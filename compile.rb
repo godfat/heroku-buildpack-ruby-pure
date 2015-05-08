@@ -33,10 +33,21 @@ module Debug
     File.write(full_key, "#{value}\n")
     save if isave
   end
+
+  def old?
+    puts "old? #{super}"
+    super
+  end
+
+  def exists?
+    puts "exists? #{super}"
+    super
+  end
 end
 
 LanguagePack::Cache.prepend Debug
 LanguagePack::Metadata.prepend Debug
+LanguagePack::BundlerCache.prepend Debug
 
 class LanguagePack::RubyPure < LanguagePack::Ruby
   def create_database_yml            ; end
