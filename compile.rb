@@ -19,8 +19,8 @@ module Debug
   end
 
   def write key, value, isave=true
-    puts "WRITE: #{LanguagePack::Metadata::FOLDER}/#{prepend(key)} #{value}"
-    super(prepend(key), value, isave)
+    puts "WRITE: #{LanguagePack::Metadata::FOLDER}/#{key} #{value}"
+    super
   end
 end
 
@@ -66,7 +66,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
       # relocate cache
       cache    .instance_variable_set(:@prefix, prefix)
-      @metadata.instance_variable_set(:@prefix, prefix)
+      LanguagePack::Metadata::FOLDER.replace(
+        "#{prefix}/#{LanguagePack::Metadata::FOLDER}")
       # cache.define_singleton_method :store do |from, path=nil|
       #   super("#{prefix}/#{from}", path)
       # end
