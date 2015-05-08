@@ -43,11 +43,13 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
         super("#{prefix}/#{from}", path)
       end
       @cache.define_singleton_method :add do |from, path=nil|
+        p "ADDING"
         super("#{prefix}/#{from}", path)
       end
       @cache.define_singleton_method :load do |path, dest=nil|
         super("#{prefix}/#{path}", dest)
       end
+      cache.load "vendor"
     end
 
     super
