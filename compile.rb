@@ -69,21 +69,25 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   end
 
   def new_app?
-    puts super
-    super
+    dir = if @prefix
+      "#{@prefix}/vendor/heroku"
+    else
+      'vendor/heroku'
+    end
+    File.exist?(dir)
   end
 
   def build_bundler
     if bundle_gemfile = self.class.env['BUNDLE_GEMFILE']
-      prefix = File.dirname(bundle_gemfile)
+      @prefix = File.dirname(bundle_gemfile)
 
       # relocate bin
       set_env_override 'PATH',
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
 
       # relocate cache
-      cache    .instance_variable_set(:@prefix, prefix)
-      @metadata.instance_variable_set(:@prefix, prefix)
+      cache    .instance_variable_set(:@prefix, @prefix)
+      @metadata.instance_variable_set(:@prefix, @prefix)
     end
 
     super
