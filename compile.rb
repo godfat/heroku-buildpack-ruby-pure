@@ -31,7 +31,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   end
 
   def build_bundler
-    puts "NEW!!XDDDDDDDDD #{new_app?} #{convert_stack}"
+    puts "NEW!!XDDDDDDDDD #{new_app?} #{@bundler_cache.old?}"
 
     if bundle_gemfile = ENV['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
@@ -46,6 +46,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
         super("#{prefix}/#{path}", dest)
       end
     end
+
+    puts "ODL!!XDDDDDDDDD #{new_app?} #{@bundler_cache.old?}"
 
     super
   end
