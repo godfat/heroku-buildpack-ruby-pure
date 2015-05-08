@@ -37,12 +37,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
 
       # relocate cache
-      FileUtils.mkdir_p("#{prefix}/vendor/heroku")
-      @cache.define_singleton_method :store do |from, path=nil|
-        super("#{prefix}/#{from}", path)
-      end
-      @cache.define_singleton_method :load do |path, dest=nil|
-        super("#{prefix}/#{path}", dest)
+      @cache.define_singleton_method :copy do |from, to|
+        super("#{prefix}/#{from}", to)
       end
     end
 
