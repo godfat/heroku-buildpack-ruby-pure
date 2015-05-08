@@ -62,7 +62,8 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   def default_process_types          ; end
 
   def new_app?
-    puts super
+    puts "false new_app?"
+    false
   end
 
   def self.bundler
