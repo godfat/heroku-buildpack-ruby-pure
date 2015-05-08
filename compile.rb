@@ -11,12 +11,10 @@ module Debug
   end
 
   def prepend path
-    puts "prefix: #{@prefix}"
-    if @prefix && path.to_s.start_with?('/')
-      path
-    else
-      puts "prepending: #{@prefix}/#{path}"
+    if @prefix && !path.to_s.start_with?('/')
       "#{@prefix}/#{path}"
+    else
+      path
     end
   end
 
