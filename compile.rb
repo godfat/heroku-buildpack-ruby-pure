@@ -41,7 +41,6 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   end
 
   def build_bundler
-    @bundler_cache.load
     p "OLD? #{@bundler_cache.old?} #{@metadata.read('stack')}"
 
     if bundle_gemfile = ENV['BUNDLE_GEMFILE']
@@ -63,7 +62,6 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
         super("#{prefix}/#{path}", dest)
       end
 
-      @bundler_cache.load
       p "OLD? #{@bundler_cache.old?} #{@metadata.read('stack')}"
     end
 
