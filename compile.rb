@@ -20,7 +20,7 @@ module Debug
 
   def write key, value, isave=true
     puts "WRITE: #{LanguagePack::Metadata::FOLDER}/#{key} #{value}"
-    super
+    super(prepend(key), value, isave)
   end
 end
 
