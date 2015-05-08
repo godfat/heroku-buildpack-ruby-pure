@@ -18,8 +18,17 @@ module Debug
     end
   end
 
+  def read key
+    super(prepend(key))
+  end
+
+  def exists? key
+    super(prepend(key))
+  end
+
   def write key, value, isave=true
-    puts "WRITE: #{LanguagePack::Metadata::FOLDER}/#{key} #{value}"
+    puts "WRITE: #{LanguagePack::Metadata::FOLDER}/#{prepend(key)} #{value}"
+    FileUtils.mkdir_p(File.dirname("#{LanguagePack::Metadata::FOLDER}/#{prepend(key)}"))
     super
   end
 end
@@ -66,8 +75,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
       # relocate cache
       cache    .instance_variable_set(:@prefix, prefix)
-      LanguagePack::Metadata::FOLDER.replace(
-        "#{prefix}/#{LanguagePack::Metadata::FOLDER}")
+      @metadata.instance_variable_set(:@prefix, prefix)
       # cache.define_singleton_method :store do |from, path=nil|
       #   super("#{prefix}/#{from}", path)
       # end
