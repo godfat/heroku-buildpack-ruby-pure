@@ -10,6 +10,7 @@ module Debug
     super
     puts "AFTER CP"
     puts `ls #{to}`
+    puts "PWD: #{Dir.pwd}"
   end
 
   def system cmd
@@ -98,5 +99,6 @@ pack.topic("Compiling #{pack.name}")
 pack.log("compile") do
   puts `cat /app/tmp/cache/vendor/heroku/stack`
   puts `ls vendor/heroku`
+  puts "WHERE AM I #{Dir.pwd}"
   pack.compile
 end
