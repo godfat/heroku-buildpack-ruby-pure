@@ -11,7 +11,7 @@ module Debug
   end
 
   def read key
-    p "READ: #{LanguagePack::Metadata::FOLDER}/#{key} #{exists?(key)} #{@cache}"
+    p "READ: #{LanguagePack::Metadata::FOLDER}/#{key} #{exists?(key)} #{Dir.pwd} #{@cache}"
     super
   end
 end
