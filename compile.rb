@@ -12,6 +12,8 @@ module Debug
 
   def read key
     p "READ: #{LanguagePack::Metadata::FOLDER}/#{key} #{exists?(key)} #{Dir.pwd} #{@cache}"
+    puts `ls vendor/heroku`
+    puts `cat vendor/heroku/stack`
     super
   end
 end
