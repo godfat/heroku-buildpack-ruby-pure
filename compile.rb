@@ -27,8 +27,9 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
         puts "=====> BUNDLE_GEMFILE detected, using #{bundle_gemfile}"
         "#{Dir.pwd}/#{bundle_gemfile}"
       end
-      LanguagePack::Helpers::BundlerWrapper.
-        new(:gemfile_path => gemfile).install
+      # LanguagePack::Helpers::BundlerWrapper.
+      #   new(:gemfile_path => gemfile).install
+      LanguagePack::Helpers::BundlerWrapper.new.install
     end
   end
 
