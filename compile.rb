@@ -94,5 +94,8 @@ pack.log("compile") do
   puts `ls -a #{ARGV[1]}/cedar-14/app/vendor/bundle`
   puts "HEROKU??"
   puts `find #{ARGV[1]} -name heroku`
+  puts `ls #{ARGV[1]}/vendor/heroku`
+  puts "--"
+  puts `ls #{ARGV[1]}/app/vendor/heroku`
   pack.compile
 end
