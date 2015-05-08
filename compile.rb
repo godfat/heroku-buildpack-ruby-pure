@@ -14,6 +14,7 @@ module Debug
     if @prefix && path.to_s.start_with?('/')
       path
     else
+      puts "prepending: #{@prefix}/#{path}"
       "#{@prefix}/#{path}"
     end
   end
