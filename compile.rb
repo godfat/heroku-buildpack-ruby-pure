@@ -25,7 +25,9 @@ module Debug
   end
 
   def exists? key
-    super(prepend(key))
+    r = super(prepend(key))
+    puts "EXISTS? #{key} => #{r}"
+    r
   end
 
   def write key, value, isave=true
