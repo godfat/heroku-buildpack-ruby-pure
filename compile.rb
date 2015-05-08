@@ -9,9 +9,15 @@ module Debug
     puts "FROM: #{from}, TO: #{to}"
     super
   end
+
+  def read key
+    p "READ: #{FOLDER}/#{key} #{@cache}"
+    super
+  end
 end
 
 LanguagePack::Cache.prepend Debug
+LanguagePack::Metadata.prepend Debug
 
 class LanguagePack::RubyPure < LanguagePack::Ruby
   def create_database_yml            ; end
