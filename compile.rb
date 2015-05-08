@@ -58,12 +58,12 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
 
     super
 
-    if bundle_gemfile
-      # write metadata back
-      cache.instance_eval do
-        copy("#{prefix}/vendor/heroku", "#{@cache_base}/vendor/heroku")
-      end
-    end
+    # if bundle_gemfile
+    #   # write metadata back
+    #   cache.instance_eval do
+    #     copy("#{prefix}/vendor/heroku", "#{@cache_base}/vendor/heroku")
+    #   end
+    # end
   end
 
   def pipe cmd, opts
