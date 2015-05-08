@@ -27,9 +27,11 @@ module Debug
   end
 
   def write key, value, isave=true
-    puts "WRITE: #{LanguagePack::Metadata::FOLDER}/#{prepend(key)} #{value}"
-    FileUtils.mkdir_p(File.dirname("#{LanguagePack::Metadata::FOLDER}/#{prepend(key)}"))
-    super
+    full_key = prepend("vendor/heroku/#{key}")
+    FileUtils.mkdir_p(File.dirname(full_key))
+    puts "WRITE: #{full_key}, #{value}"
+    File.write(full_key, "#{value}\n")
+    save if isave
   end
 end
 
