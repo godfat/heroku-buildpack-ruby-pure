@@ -91,6 +91,8 @@ pack = LanguagePack::RubyPure.new(ARGV[0], ARGV[1])
 pack.topic("Compiling #{pack.name}")
 pack.log("compile") do
   puts "CACHE: #{ARGV[1]}"
-  puts `ls -a #{ARGV[1]}/cedar-14/app/vendor`
+  puts `ls -a #{ARGV[1]}/cedar-14/app/vendor/bundle`
+  puts "HEROKU??"
+  puts `find #{ARGV[1]} -name heroku`
   pack.compile
 end
