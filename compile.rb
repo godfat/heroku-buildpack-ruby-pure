@@ -59,6 +59,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
         super("#{prefix}/#{from}", path)
       end
       cache.define_singleton_method :load do |path, dest=nil|
+        p "LOADING: #{prefix}/#{path} #{dest}"
         super("#{prefix}/#{path}", dest)
       end
 
