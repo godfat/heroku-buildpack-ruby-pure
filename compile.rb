@@ -6,8 +6,16 @@ require 'language_pack/ruby'
 
 module Debug
   def copy from, to
-    puts "FROM: #{from}, TO: #{to}"
-    super
+    puts "FROM: #{prepend(from)}, TO: #{prepend(to)}"
+    super(prepend(from), prepend(to))
+  end
+
+  def prepend path
+    if @prefix && path.to_s.start_with?('/')
+      path
+    else
+      "#{@prefix}/#{path}"
+    end
   end
 
   def write key, value, isave=true
@@ -39,20 +47,25 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
     LanguagePack::ShellHelpers.user_env_hash
   end
 
+  # def load_bundler_cache
+  #   super
+
+  #   if bundle_gemfile = self.class.env['BUNDLE_GEMFILE']
+  #     prefix = File.dirname(bundle_gemfile)
+  #     cache.load('.bu')
+  #   end
+  # end
+
   def build_bundler
     if bundle_gemfile = self.class.env['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile)
-
-      puts "ls #{prefix}/.bundle"
-      puts `ls #{prefix}/.bundle`
-      puts "ls .bundle"
-      puts `ls .bundle`
 
       # relocate bin
       set_env_override 'PATH',
                        "$HOME/#{prefix}/#{bundler_binstubs_path}:$PATH"
 
       # relocate cache
+      cache.instance_variable_set(:@prefix, prefix)
       # cache.define_singleton_method :store do |from, path=nil|
       #   super("#{prefix}/#{from}", path)
       # end
