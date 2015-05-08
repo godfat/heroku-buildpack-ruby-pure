@@ -6,9 +6,9 @@ require 'language_pack/ruby'
 
 module Debug
   def copy from, to
-    f, t = File.expand_path(from), File.expand_path(to)
-    puts "FROM: #{f}, TO: #{t}"
-    super(f, t)
+    # f, t = File.expand_path(from), File.expand_path(to)
+    # puts "FROM: #{f}, TO: #{t}"
+    super
   end
 end
 
