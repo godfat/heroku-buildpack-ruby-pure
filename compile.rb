@@ -36,6 +36,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   end
 
   def build_bundler
+    p "build_bundler #{self.class.env['BUNDLE_GEMFILE']}"
     if bundle_gemfile = ENV['BUNDLE_GEMFILE']
       prefix = File.dirname(bundle_gemfile).sub(%r{^#{Dir.pwd}/}, '')
 
@@ -66,6 +67,7 @@ class LanguagePack::RubyPure < LanguagePack::Ruby
   end
 
   def pipe cmd, opts
+    p "pipe #{self.class.env['BUNDLE_GEMFILE']}"
     if opts[:env] && (bundle_gemfile = ENV['BUNDLE_GEMFILE'])
       opts[:env]['BUNDLE_GEMFILE'] = bundle_gemfile
     end
