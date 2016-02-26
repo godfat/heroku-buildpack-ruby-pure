@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 url=https://github.com/heroku/heroku-buildpack-ruby
-tag=v140
+tag=v144
 dir=$(mktemp -t buildpackXXXXX)
 rm -rf $dir
 
